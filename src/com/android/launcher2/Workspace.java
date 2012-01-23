@@ -1193,7 +1193,7 @@ public class Workspace extends PagedView
      * @param height Height of the view
      * @return Offset to be used in a View.setTranslationX() call
      */
-    private float getOffsetXForRotation(float degrees, int width, int height) {
+    protected float getOffsetXForRotation(float degrees, int width, int height) {
         mMatrix.reset();
         mCamera.save();
         mCamera.rotateY(Math.abs(degrees));
