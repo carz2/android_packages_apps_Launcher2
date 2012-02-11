@@ -1485,8 +1485,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                 float scrollProgress = getScrollProgress(screenScroll, v, i);
                 if (mFadeInAdjacentScreens) {
                     float alpha = 1 - Math.abs(scrollProgress);
-                    v.setFastAlpha(alpha);
-                    v.fastInvalidate();
+                    v.setAlpha(alpha);
                 }
             }
         }
@@ -1500,16 +1499,14 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                 float rotation = TRANSITION_SCREEN_ROTATION * scrollProgress;
                 float translationX = mLauncher.getWorkspace().getOffsetXForRotation(rotation, v.getWidth(), v.getHeight());
 
-                v.setFastTranslationX(translationX);
-                v.setFastRotationY(rotation);
+                v.setTranslationX(translationX);
+                v.setRotationY(rotation);
                 if (mFadeInAdjacentScreens) {
                     float alpha = 1 - Math.abs(scrollProgress);
-                    v.setFastAlpha(alpha);
+                    v.setAlpha(alpha);
                 }
-                v.fastInvalidate();
             }
         }
-        invalidate();
     }
 
     private void screenScrolledZoom(int screenScroll, boolean in) {
@@ -1522,16 +1519,15 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                 // Extra translation to account for the increase in size
                 if (!in) {
                     float translationX = v.getMeasuredWidth() * 0.1f * -scrollProgress;
-                    v.setFastTranslationX(translationX);
+                    v.setTranslationX(translationX);
                 }
 
-                v.setFastScaleX(scale);
-                v.setFastScaleY(scale);
+                v.setScaleX(scale);
+                v.setScaleY(scale);
                 if (mFadeInAdjacentScreens) {
                     float alpha = 1 - Math.abs(scrollProgress);
-                    v.setFastAlpha(alpha);
+                    v.setAlpha(alpha);
                 }
-                v.fastInvalidate();
             }
         }
     }
@@ -1557,12 +1553,11 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                 }
 
                 v.setRotation(rotation);
-                v.setFastTranslationX(translationX);
+                v.setTranslationX(translationX);
                 if (mFadeInAdjacentScreens) {
                     float alpha = 1 - Math.abs(scrollProgress);
-                    v.setFastAlpha(alpha);
+                    v.setAlpha(alpha);
                 }
-                v.fastInvalidate();
             }
         }
     }
@@ -1582,8 +1577,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                 v.setPivotX(scrollProgress < 0 ? 0 : v.getMeasuredWidth());
                 v.setPivotY(v.getMeasuredHeight() * 0.5f);
                 v.setRotationY(rotation);
-                v.setFastAlpha(alpha);
-                v.fastInvalidate();
+                v.setAlpha(alpha);
             }
         }
     }
@@ -1607,22 +1601,20 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                     alpha = mLeftScreenAlphaInterpolator.getInterpolation(1 - scrollProgress);
                 }
 
-                v.setFastTranslationX(translationX);
-                v.setFastScaleX(scale);
-                v.setFastScaleY(scale);
-                v.setFastAlpha(alpha);
+                v.setTranslationX(translationX);
+                v.setScaleX(scale);
+                v.setScaleY(scale);
+                v.setAlpha(alpha);
 
                 // If the view has 0 alpha, we set it to be invisible so as to prevent
                 // it from accepting touches
-                if (alpha <= 0) {
+                if (alpha <= ViewConfiguration.ALPHA_THRESHOLD) {
                     v.setVisibility(INVISIBLE);
                 } else if (v.getVisibility() != VISIBLE) {
                     v.setVisibility(VISIBLE);
                 }
-                v.fastInvalidate();
             }
         }
-        invalidate();
     }
 
     // Transition effects
