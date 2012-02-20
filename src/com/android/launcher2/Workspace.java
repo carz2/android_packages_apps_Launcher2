@@ -49,6 +49,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,8 +108,6 @@ public class Workspace extends SmoothPagedView
     private final WallpaperManager mWallpaperManager;
     private IBinder mWindowToken;
     private static final float WALLPAPER_SCREENS_SPAN = 2f;
-
-    private int mDefaultPage;
 
     /**
      * CellInfo for the cell that is currently being dragged
@@ -260,6 +259,8 @@ public class Workspace extends SmoothPagedView
     private float mTransitionProgress;
 
     // Preferences
+    private int mNumberHomescreens;
+    private int mDefaultHomescreen;
     private boolean mShowSearchBar;
 
     /**
@@ -332,7 +333,6 @@ public class Workspace extends SmoothPagedView
         // if the value is manually specified, use that instead
         cellCountX = a.getInt(R.styleable.Workspace_cellCountX, cellCountX);
         cellCountY = a.getInt(R.styleable.Workspace_cellCountY, cellCountY);
-        mDefaultPage = a.getInt(R.styleable.Workspace_defaultScreen, 1);
         a.recycle();
 
         setOnHierarchyChangeListener(this);
@@ -341,6 +341,12 @@ public class Workspace extends SmoothPagedView
         setHapticFeedbackEnabled(false);
 
         // Preferences
+        mNumberHomescreens = PreferencesProvider.Interface.Homescreen.getNumberHomescreens(context);
+        mDefaultHomescreen = PreferencesProvider.Interface.Homescreen.getDefaultHomescreen(context,
+                mNumberHomescreens / 2);
+        if (mDefaultHomescreen >= mNumberHomescreens) {
+            mDefaultHomescreen = mNumberHomescreens / 2;
+        }
         mShowSearchBar = PreferencesProvider.Interface.Homescreen.getShowSearchBar(context);
 
         mLauncher = (Launcher) context;
@@ -418,7 +424,7 @@ public class Workspace extends SmoothPagedView
      */
     protected void initWorkspace() {
         Context context = getContext();
-        mCurrentPage = mDefaultPage;
+        mCurrentPage = mDefaultHomescreen;
         Launcher.setScreen(mCurrentPage);
         LauncherApplication app = (LauncherApplication)context.getApplicationContext();
         mIconCache = app.getIconCache();
@@ -426,6 +432,12 @@ public class Workspace extends SmoothPagedView
         setChildrenDrawnWithCacheEnabled(true);
 
         final Resources res = getResources();
+
+        LayoutInflater inflater =
+                (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        for (int i = 0; i < mNumberHomescreens; i++) {
+            inflater.inflate(R.layout.workspace_screen, this);
+        }
         try {
             mBackground = res.getDrawable(R.drawable.apps_customize_bg);
         } catch (Resources.NotFoundException e) {
@@ -1284,6 +1296,7 @@ public class Workspace extends SmoothPagedView
         if (mOverScrollX < 0 || mOverScrollX > mMaxScrollX) {
             int index = mOverScrollX < 0 ? 0 : getChildCount() - 1;
             CellLayout cl = (CellLayout) getChildAt(index);
+            if (getChildCount() > 1) {
             float scrollProgress = getScrollProgress(screenCenter, cl, index);
             cl.setOverScrollAmount(Math.abs(scrollProgress), index == 0);
             float rotation = - WORKSPACE_OVERSCROLL_ROTATION * scrollProgress;
@@ -1295,6 +1308,7 @@ public class Workspace extends SmoothPagedView
                 cl.setPivotX(cl.getMeasuredWidth() * (index == 0 ? 0.75f : 0.25f));
                 cl.setPivotY(cl.getMeasuredHeight() * 0.5f);
                 cl.setOverscrollTransformsDirty(true);
+                }
             }
         } else {
             if (mOverscrollFade != 0) {
@@ -3753,12 +3767,12 @@ public class Workspace extends SmoothPagedView
     void moveToDefaultScreen(boolean animate) {
         if (!isSmall()) {
             if (animate) {
-                snapToPage(mDefaultPage);
+                snapToPage(mDefaultHomescreen);
             } else {
-                setCurrentPage(mDefaultPage);
+                setCurrentPage(mDefaultHomescreen);
             }
         }
-        getChildAt(mDefaultPage).requestFocus();
+        getChildAt(mDefaultHomescreen).requestFocus();
     }
 
     @Override

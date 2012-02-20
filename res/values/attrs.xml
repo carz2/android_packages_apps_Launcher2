@@ -44,8 +44,6 @@
     <!-- Workspace specific attributes. These attributes are used to customize
          the workspace in XML files. -->
     <declare-styleable name="Workspace">
-        <!-- The first screen the workspace should display. -->
-        <attr name="defaultScreen" format="integer"  />
         <!-- The number of horizontal cells in the CellLayout -->
         <attr name="cellCountX" format="integer"  />
         <!-- The number of vertical cells in the CellLayout -->
@@ -163,6 +161,7 @@
     <declare-styleable name="CustomClingTitleText">
     </declare-styleable>
     <declare-styleable name="CustomClingText">
+    </declare-styleable>
 
     <declare-styleable name="NumberPickerPreference">
         <attr name="max" format="integer" />
