@@ -246,6 +246,14 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         Widgets
     }
 
+    /**
+     * The sorting mode of the apps.
+     */
+    public enum SortMode {
+        Title,
+        InstallDate
+    }
+
     // Refs
     private Launcher mLauncher;
     private DragController mDragController;
@@ -257,6 +265,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
     private PagedViewIcon mPressedIcon;
 
     // Content
+    private SortMode mSortMode = SortMode.Title;
     private ArrayList<ApplicationInfo> mApps;
     private ArrayList<Object> mWidgets;
 
@@ -1706,6 +1715,23 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         return false;
     }
 
+    public SortMode getSortMode() {
+        return mSortMode;
+    }
+
+    public void setSortMode(SortMode sortMode) {
+        if (mSortMode == sortMode) {
+            return;
+        }
+
+        mSortMode = sortMode;
+
+        if (mSortMode == SortMode.Title) {
+            Collections.sort(mApps, LauncherModel.APP_NAME_COMPARATOR);
+        } else if (mSortMode == SortMode.InstallDate) {
+            Collections.sort(mApps, LauncherModel.APP_INSTALL_TIME_COMPARATOR);
+        }
+    }
     /**
      * We should call thise method whenever the core data changes (mApps, mWidgets) so that we can
      * appropriately determine when to invalidate the PagedView page data.  In cases where the data
@@ -1726,7 +1752,11 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
     @Override
     public void setApps(ArrayList<ApplicationInfo> list) {
         mApps = list;
-        Collections.sort(mApps, LauncherModel.APP_NAME_COMPARATOR);
+        if (mSortMode == SortMode.Title) {
+            Collections.sort(mApps, LauncherModel.APP_NAME_COMPARATOR);
+        } else if (mSortMode == SortMode.InstallDate) {
+            Collections.sort(mApps, LauncherModel.APP_INSTALL_TIME_COMPARATOR);
+        }
         updatePageCounts();
         invalidateOnDataChange();
     }
@@ -1735,7 +1765,12 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         int count = list.size();
         for (int i = 0; i < count; ++i) {
             ApplicationInfo info = list.get(i);
-            int index = Collections.binarySearch(mApps, info, LauncherModel.APP_NAME_COMPARATOR);
+            int index = 0;
+            if (mSortMode == SortMode.Title) {
+                index = Collections.binarySearch(mApps, info, LauncherModel.APP_NAME_COMPARATOR);
+            } else if (mSortMode == SortMode.InstallDate) {
+                index = Collections.binarySearch(mApps, info, LauncherModel.APP_INSTALL_TIME_COMPARATOR);
+            }
             if (index < 0) {
                 mApps.add(-(index + 1), info);
             }
