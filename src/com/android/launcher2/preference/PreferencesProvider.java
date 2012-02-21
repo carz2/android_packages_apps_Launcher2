@@ -3,8 +3,8 @@ package com.android.launcher2.preference;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.cyanogenmod.trebuchet.Workspace;
-import com.cyanogenmod.trebuchet.AppsCustomizePagedView;
+import com.android.launcher2.Workspace;
+import com.android.launcher2.AppsCustomizePagedView;
 
 public final class PreferencesProvider {
     public static final String PREFERENCES_KEY = "com.android.launcher_preferences";
