@@ -81,7 +81,7 @@ import java.util.List;
  * Each page contains a number of icons, folders or widgets the user can
  * interact with. A workspace is meant to be used with a fixed width only.
  */
-public class Workspace extends PagedView
+public class Workspace extends SmoothPagedView
         implements DropTarget, DragSource, DragScroller, View.OnTouchListener,
         DragController.DragListener {
     @SuppressWarnings({"UnusedDeclaration"})
@@ -493,6 +493,11 @@ public class Workspace extends PagedView
             mWallpaperTravelWidth = (int) (mDisplayWidth *
                     wallpaperTravelToScreenWidthRatio(mDisplayWidth, mDisplayHeight));
         }
+    }
+
+    @Override
+    protected int getScrollMode() {
+        return SmoothPagedView.X_LARGE_MODE;
     }
 
     @Override
