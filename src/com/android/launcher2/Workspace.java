@@ -3847,9 +3847,11 @@ public class Workspace extends SmoothPagedView
         if (qsbDivider != null)
             if (mShowSearchBar) {
                 qsbDivider.setAlpha(reducedFade);
+        }
         if (dockDivider != null)
             if (mShowSearchBar) {
                 dockDivider.setAlpha(reducedFade);
         scrollIndicator.setAlpha(1 - fade);
+        }
     }
 }
