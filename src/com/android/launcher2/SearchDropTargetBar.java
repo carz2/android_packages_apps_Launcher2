@@ -149,11 +149,13 @@ public class SearchDropTargetBar extends FrameLayout implements DragController.D
             if (mShowQSBSearchBar) {
                 prepareStartAnimation(mQSBSearchBar);
                 mQSBSearchBarAnim.reverse();
+            }
         } else {
             if (mShowQSBSearchBar) {
                 mQSBSearchBarAnim.cancel();
             if (mEnableDropDownDropTargets) {
                 mQSBSearchBar.setTranslationY(0);
+              }
             } else {
                 mQSBSearchBar.setAlpha(1f);
             }
@@ -166,11 +168,13 @@ public class SearchDropTargetBar extends FrameLayout implements DragController.D
             if (mShowQSBSearchBar) {
                 prepareStartAnimation(mQSBSearchBar);
                 mQSBSearchBarAnim.start();
+            }
         } else {
             if (mShowQSBSearchBar) {
                 mQSBSearchBarAnim.cancel();
             if (mEnableDropDownDropTargets) {
                 mQSBSearchBar.setTranslationY(-mBarHeight);
+              }
             } else {
                 mQSBSearchBar.setAlpha(0f);
             }
@@ -196,7 +200,7 @@ public class SearchDropTargetBar extends FrameLayout implements DragController.D
         // Animate out the QSB search bar, and animate in the drop target bar
         prepareStartAnimation(mDropTargetBar);
         mDropTargetBarAnim.start();
-        if (!mIsSearchBarHidden) && mShowQSBSearchBar) {
+        if (!mIsSearchBarHidden && mShowQSBSearchBar) {
             prepareStartAnimation(mQSBSearchBar);
             mQSBSearchBarAnim.start();
         }
@@ -212,7 +216,7 @@ public class SearchDropTargetBar extends FrameLayout implements DragController.D
             // Restore the QSB search bar, and animate out the drop target bar
             prepareStartAnimation(mDropTargetBar);
             mDropTargetBarAnim.reverse();
-            if (!mIsSearchBarHidden) && mShowQSBSearchBar) {
+            if (!mIsSearchBarHidden && mShowQSBSearchBar) {
                 prepareStartAnimation(mQSBSearchBar);
                 mQSBSearchBarAnim.reverse();
             }
