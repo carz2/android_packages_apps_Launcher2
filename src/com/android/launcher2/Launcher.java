@@ -421,7 +421,7 @@ public final class Launcher extends Activity
         mSearchDropTargetBar.onSearchPackagesChanged(searchVisible, voiceVisible);
 
         final UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-        if (PreferencesProvider.Interface.General.getAutoRotate(this) ||
+        if (PreferencesProvider.Interface.Homescreen.getAutoRotate(this) ||
                 uiModeManager.getCurrentModeType() != Configuration.UI_MODE_TYPE_NORMAL) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
         } else {

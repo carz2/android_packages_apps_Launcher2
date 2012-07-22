@@ -22,6 +22,10 @@ public final class PreferencesProvider {
                 final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
                 return preferences.getBoolean("ui_homescreen_general_search", true);
             }
+            public static boolean getAutoRotate(Context context) {
+                final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
+                return preferences.getBoolean("ui_general_orientation", false);
+            }
         }
 
         public static class Drawer {
@@ -34,13 +38,6 @@ public final class PreferencesProvider {
 
         public static class Icons {
 
-        }
-
-        public static class General {
-            public static boolean getAutoRotate(Context context) {
-                final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
-                return preferences.getBoolean("ui_general_orientation", false);
-            }
         }
     }
 
