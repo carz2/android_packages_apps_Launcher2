@@ -29,24 +29,20 @@ public final class PreferencesProvider {
         }
     }
 
-/*        public static class Drawer {
-
-        }*/
-
-        public static class Dock {
-            public static class Indicator {
-                public static boolean getShowDockDivider(Context context) {
-                    final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
-                    return preferences.getBoolean("ui_dock_indicator_background", true);
+    public static class Dock {
+        public static class Indicator {
+            public static boolean getShowDockDivider(Context context) {
+                final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
+                return preferences.getBoolean("ui_dock_indicator_background", true);
             }
+        }
+    }
+
+        public static class Drawer {
+
         }
 
         public static class Icons {
 
         }
-    }
-
-/*    public static class Application {
-
-    }*/
 }
