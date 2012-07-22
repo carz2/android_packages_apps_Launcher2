@@ -1737,6 +1737,10 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         } else if (mSortMode == SortMode.InstallDate) {
             Collections.sort(mApps, LauncherModel.APP_INSTALL_TIME_COMPARATOR);
         }
+
+        for (int i = 0; i < mNumAppsPages; i++) {
+            syncAppsPageItems(i, true);
+        }
     }
     /**
      * We should call thise method whenever the core data changes (mApps, mWidgets) so that we can
