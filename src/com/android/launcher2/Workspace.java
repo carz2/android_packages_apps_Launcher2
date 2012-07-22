@@ -267,6 +267,7 @@ public class Workspace extends SmoothPagedView
     private int mNumberHomescreens;
     private int mDefaultHomescreen;
     private boolean mShowSearchBar;
+    private boolean mShowDockDivider;
 
     /**
      * Used to inflate the Workspace from XML.
@@ -355,6 +356,9 @@ public class Workspace extends SmoothPagedView
             mDefaultHomescreen = mNumberHomescreens / 2;
         }
         mShowSearchBar = PreferencesProvider.Interface.Homescreen.getShowSearchBar(context);
+
+        mShowDockDivider = PreferencesProvider.Dock.Indicator.getShowDockDivider(context);
+
         initWorkspace();
 
         // Disable multitouch across the workspace/all apps/customize tray
@@ -3863,7 +3867,7 @@ public class Workspace extends SmoothPagedView
                 qsbDivider.setAlpha(reducedFade);
         }
         if (dockDivider != null)
-            if (mShowSearchBar) {
+            if (mShowDockDivider) {
                 dockDivider.setAlpha(reducedFade);
         scrollIndicator.setAlpha(1 - fade);
         }

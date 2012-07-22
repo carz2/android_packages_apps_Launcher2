@@ -45,15 +45,18 @@
             </PreferenceCategory>
         </PreferenceScreen>
 
-        <!-- Drawer -->
-        <PreferenceScreen android:key="ui_drawer"
-            android:title="@string/preferences_interface_drawer_title">
-
-        </PreferenceScreen>
-
         <!-- Dock -->
         <PreferenceScreen android:key="ui_dock"
             android:title="@string/preferences_interface_dock_title">
+                <CheckBoxPreference android:key="ui_dock_indicator_background"
+                    android:title="@string/preferences_interface_dock_indicator_background_title"
+                    android:summary="@string/preferences_interface_dock_indicator_background_summary"
+                    android:defaultValue="true" />
+        </PreferenceScreen>
+
+        <!-- Drawer -->
+        <PreferenceScreen android:key="ui_drawer"
+            android:title="@string/preferences_interface_drawer_title">
 
         </PreferenceScreen>
 
@@ -64,7 +67,4 @@
         </PreferenceScreen>
     </PreferenceCategory>
 
-    <!-- Application -->
-    <PreferenceCategory android:title="@string/preferences_application_title">
-    </PreferenceCategory>
 </PreferenceScreen>
