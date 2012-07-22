@@ -39,6 +39,9 @@
                     android:title="@string/preferences_interface_homescreen_general_search_title"
                     android:summary="@string/preferences_interface_homescreen_general_search_summary"
                     android:defaultValue="true" />
+                <CheckBoxPreference android:key="ui_general_orientation"
+                    android:title="@string/preferences_interface_homescreen_general_orientation_title"
+                    android:summary="@string/preferences_interface_homescreen_general_orientation_summary" />
             </PreferenceCategory>
         </PreferenceScreen>
 
@@ -58,13 +61,6 @@
         <PreferenceScreen android:key="ui_icons"
             android:title="@string/preferences_interface_icons_title">
 
-        </PreferenceScreen>
-
-        <!-- General -->
-        <PreferenceScreen android:key="ui_general"
-            android:title="@string/preferences_interface_general_title">
-            <CheckBoxPreference android:key="ui_general_orientation"
-                android:title="@string/preferences_interface_general_orientation_title" />
         </PreferenceScreen>
     </PreferenceCategory>
 
