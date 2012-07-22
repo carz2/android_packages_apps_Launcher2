@@ -101,17 +101,23 @@ public class NumberPickerPreference extends DialogPreference {
 
         mNumberPicker = (NumberPicker) view.findViewById(R.id.number_picker);
 
+        if (mNumberPicker == null) {
+            throw new RuntimeException("mNumberPicker is null!");
+        }
+
         // Initialize state
+        mNumberPicker.setWrapSelectorWheel(false);
         mNumberPicker.setMaxValue(max);
         mNumberPicker.setMinValue(min);
         mNumberPicker.setValue(getPersistedInt(mDefault));
-        mNumberPicker.setWrapSelectorWheel(false);
 
         // No keyboard popup
         EditText textInput = (EditText) mNumberPicker.findViewById(com.android.internal.R.id.numberpicker_input);
-        textInput.setCursorVisible(false);
-        textInput.setFocusable(false);
-        textInput.setFocusableInTouchMode(false);
+        if (textInput != null) {
+            textInput.setCursorVisible(false);
+            textInput.setFocusable(false);
+            textInput.setFocusableInTouchMode(false);
+        }
 
         return view;
     }
