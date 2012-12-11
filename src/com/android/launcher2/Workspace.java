@@ -52,6 +52,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -999,6 +1000,11 @@ public class Workspace extends SmoothPagedView
         } else {
             mWallpaperScrollRatio = 1f;
         }
+    }
+
+    @Override
+    protected Interpolator getScrollInterpolator() {
+        return new PagedView.QuadInterpolator();
     }
 
     class WallpaperOffsetInterpolator {
