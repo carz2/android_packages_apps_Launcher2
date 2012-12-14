@@ -26,21 +26,27 @@ public final class PreferencesProvider {
                 final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
                 return preferences.getBoolean("ui_general_orientation", false);
             }
-        }
-    }
-
-    public static class Dock {
-        public static class Indicator {
-            public static boolean getShowDockDivider(Context context) {
-                final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
-                return preferences.getBoolean("ui_dock_indicator_background", true);
+            public static class Scrolling {
+                public static boolean getFadeInAdjacentScreens(Context context, boolean def) {
+                    final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
+                    return preferences.getBoolean("ui_homescreen_scrolling_fade_adjacent_screens", def);
+                }
             }
         }
-    }
+
+        public static class Dock {
+            public static class Indicator {
+                public static boolean getShowDockDivider(Context context) {
+                final SharedPreferences preferences = context.getSharedPreferences(PREFERENCES_KEY, 0);
+                    return preferences.getBoolean("ui_dock_indicator_background", true);
+                }
+            }
+        }
 
         public static class Drawer {
 
         }
+    }
 
         public static class Icons {
 

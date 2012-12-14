@@ -39,6 +39,10 @@
                     android:title="@string/preferences_interface_homescreen_general_search_title"
                     android:summary="@string/preferences_interface_homescreen_general_search_summary"
                     android:defaultValue="true" />
+                <CheckBoxPreference android:key="ui_homescreen_scrolling_fade_adjacent_screens"
+                    android:title="@string/preferences_interface_homescreen_scrolling_fade_adjacent_screens_title"
+                    android:summary="@string/preferences_interface_homescreen_scrolling_fade_adjacent_screens_summary"
+                    android:defaultValue="@bool/config_workspaceDefualtFadeInAdjacentScreens" />
                 <CheckBoxPreference android:key="ui_general_orientation"
                     android:title="@string/preferences_interface_homescreen_general_orientation_title"
                     android:summary="@string/preferences_interface_homescreen_general_orientation_summary" />

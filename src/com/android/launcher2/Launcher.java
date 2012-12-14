@@ -380,7 +380,7 @@ public final class Launcher extends Activity
 
         // Preferences
         mShowSearchBar = PreferencesProvider.Interface.Homescreen.getShowSearchBar(this);
-        mShowDockDivider = PreferencesProvider.Dock.Indicator.getShowDockDivider(this);
+        mShowDockDivider = PreferencesProvider.Interface.Dock.Indicator.getShowDockDivider(this);
 
         if (PROFILE_STARTUP) {
             android.os.Debug.startMethodTracing(
