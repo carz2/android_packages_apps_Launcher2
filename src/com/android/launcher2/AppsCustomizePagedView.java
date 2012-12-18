@@ -288,6 +288,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
     private static final float TRANSITION_SCREEN_ROTATION = 12.5f;
     private boolean mScrollTransformsDirty = false;
     private boolean mOverscrollTransformsDirty = false;
+    private int mCameraDistance;
     private AccelerateInterpolator mAlphaInterpolator = new AccelerateInterpolator(0.9f);
     private DecelerateInterpolator mLeftScreenAlphaInterpolator = new DecelerateInterpolator(4);
     public enum TransitionEffect {
@@ -356,6 +357,8 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         mHandleFadeInAdjacentScreens = true;
 
         Resources resources = context.getResources();
+
+        mCameraDistance = resources.getInteger(R.integer.config_cameraDistance);
 
         mTransitionEffect = PreferencesProvider.Interface.Drawer.Scrolling.getTransitionEffect(context,
                 resources.getString(R.string.config_drawerDefaultTransitionEffect));
@@ -1727,7 +1730,7 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
                 float alpha = 1 - Math.abs(scrollProgress);
 
                 if (in) {
-                    v.setCameraDistance(mDensity * CAMERA_DISTANCE);
+                    v.setCameraDistance(mDensity * mCameraDistance);
                 }
 
                 v.setPivotX(scrollProgress < 0 ? 0 : v.getMeasuredWidth());
@@ -1917,12 +1920,14 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
             if (v != null) {
                 float scrollProgress = getScrollProgress(screenScroll, v, index);
                 float rotation = - TRANSITION_MAX_ROTATION * scrollProgress;
-                v.setCameraDistance(mDensity * CAMERA_DISTANCE);
-                v.setPivotX(v.getMeasuredWidth() * (index == 0 ? TRANSITION_PIVOT : 1 - TRANSITION_PIVOT));
-                v.setPivotY(v.getMeasuredHeight() * 0.5f);
-                v.setRotationY(rotation);
-                v.setTranslationX(0);
-                mOverscrollTransformsDirty = true;
+                v.setCameraDistance(mDensity * mCameraDistance);
+                if (!mOverscrollTransformsDirty) {
+                    mOverscrollTransformsDirty = true;
+                        v.setPivotX(v.getMeasuredWidth() * (index == 0 ? TRANSITION_PIVOT : 1 - TRANSITION_PIVOT));
+                        v.setPivotY(v.getMeasuredHeight() * 0.5f);
+                        v.setRotationY(rotation);
+                        v.setTranslationX(0);
+                 }
             }
         }
     }
