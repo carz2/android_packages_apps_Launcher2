@@ -35,40 +35,59 @@
                     launcher:maxExternal="ui_homescreen_screens"
                     launcher:max="7"
                     launcher:min="1" />
+                <CheckBoxPreference android:key="ui_general_orientation"
+                    android:title="@string/preferences_interface_homescreen_general_orientation_title"
+                    android:summary="@string/preferences_interface_homescreen_general_orientation_summary" />
                 <CheckBoxPreference android:key="ui_homescreen_general_search"
                     android:title="@string/preferences_interface_homescreen_general_search_title"
                     android:summary="@string/preferences_interface_homescreen_general_search_summary"
                     android:defaultValue="true" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="@string/preferences_interface_homescreen_scrolling_category">
+                <ListPreference android:key="ui_homescreen_scrolling_transition_effect"
+                    android:title="@string/preferences_interface_homescreen_scrolling_transition_effect_title"
+                    android:summary="@string/preferences_interface_homescreen_scrolling_transition_effect_summary"
+                    android:entries="@array/preferences_interface_homescreen_scrolling_transition_effect_entries"
+                    android:entryValues="@array/preferences_interface_homescreen_scrolling_transition_effect_values"
+                    android:defaultValue="@string/config_workspaceDefaultTransitionEffect" />
                 <CheckBoxPreference android:key="ui_homescreen_scrolling_fade_adjacent_screens"
                     android:title="@string/preferences_interface_homescreen_scrolling_fade_adjacent_screens_title"
                     android:summary="@string/preferences_interface_homescreen_scrolling_fade_adjacent_screens_summary"
                     android:defaultValue="@bool/config_workspaceDefualtFadeInAdjacentScreens" />
-                <CheckBoxPreference android:key="ui_general_orientation"
-                    android:title="@string/preferences_interface_homescreen_general_orientation_title"
-                    android:summary="@string/preferences_interface_homescreen_general_orientation_summary" />
-            </PreferenceCategory>
-        </PreferenceScreen>
-
-        <!-- Dock -->
-        <PreferenceScreen android:key="ui_dock"
-            android:title="@string/preferences_interface_dock_title">
                 <CheckBoxPreference android:key="ui_dock_indicator_background"
                     android:title="@string/preferences_interface_dock_indicator_background_title"
                     android:summary="@string/preferences_interface_dock_indicator_background_summary"
                     android:defaultValue="true" />
+            </PreferenceCategory>
         </PreferenceScreen>
 
         <!-- Drawer -->
         <PreferenceScreen android:key="ui_drawer"
             android:title="@string/preferences_interface_drawer_title">
-
+            <PreferenceCategory android:title="@string/preferences_interface_drawer_scrolling_category">
+                <ListPreference android:key="ui_drawer_scrolling_transition_effect"
+                    android:title="@string/preferences_interface_drawer_scrolling_transition_effect_title"
+                    android:summary="@string/preferences_interface_drawer_scrolling_transition_effect_summary"
+                    android:entries="@array/preferences_interface_drawer_scrolling_transition_effect_entries"
+                    android:entryValues="@array/preferences_interface_drawer_scrolling_transition_effect_values"
+                    android:defaultValue="@string/config_drawerDefaultTransitionEffect" />
+                <CheckBoxPreference android:key="ui_drawer_scrolling_fade_adjacent_screens"
+                    android:title="@string/preferences_interface_drawer_scrolling_fade_adjacent_screens_title"
+                    android:summary="@string/preferences_interface_drawer_scrolling_fade_adjacent_screens_summary" />
+            </PreferenceCategory>
         </PreferenceScreen>
+
+        <!-- Dock -->
+        <!--PreferenceScreen android:key="ui_dock"
+            android:title="@string/preferences_interface_dock_title">
+
+        </PreferenceScreen-->
 
         <!-- Icons -->
-        <PreferenceScreen android:key="ui_icons"
+        <!--PreferenceScreen android:key="ui_icons"
             android:title="@string/preferences_interface_icons_title">
 
-        </PreferenceScreen>
+        </PreferenceScreen-->
     </PreferenceCategory>
 
 </PreferenceScreen>

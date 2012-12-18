@@ -298,11 +298,19 @@ s -->
     <string name="preferences_interface_homescreen_general_search_summary">Enable persistent search bar</string>
     <string name="preferences_interface_homescreen_general_orientation_title">Auto-rotate screen</string>
     <string name="preferences_interface_homescreen_general_orientation_summary">Enable Homescreen Rotation</string>
+    <string name="preferences_interface_homescreen_scrolling_category">Scrolling</string>
     <string name="preferences_interface_homescreen_scrolling_fade_adjacent_screens_title">Fade side screens</string>
     <string name="preferences_interface_homescreen_scrolling_fade_adjacent_screens_summary">Fade the side screens when scrolling homescreens</string>
+    <string name="preferences_interface_homescreen_scrolling_transition_effect_title">Transition effect</string>
+    <string name="preferences_interface_homescreen_scrolling_transition_effect_summary">Scrolling effect when scrolling homescreens</string>
 
     <!-- Drawer -->
     <string name="preferences_interface_drawer_title">Drawer</string>
+    <string name="preferences_interface_drawer_scrolling_category">Scrolling</string>
+    <string name="preferences_interface_drawer_scrolling_transition_effect_title">Transition effect</string>
+    <string name="preferences_interface_drawer_scrolling_transition_effect_summary">Scrolling effect when scrolling screens</string>
+    <string name="preferences_interface_drawer_scrolling_fade_adjacent_screens_title">Fade side pages</string>
+    <string name="preferences_interface_drawer_scrolling_fade_adjacent_screens_summary">Fade the side pages when scrolling screens</string>
 
     <!-- Dock -->
     <string name="preferences_interface_dock_title">Dock</string>
