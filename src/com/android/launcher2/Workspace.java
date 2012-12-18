@@ -189,7 +189,6 @@ public class Workspace extends SmoothPagedView
     private boolean mScrollTransformsDirty = false;
     private boolean mOverscrollTransformsDirty = false;
     public static final int DRAG_BITMAP_PADDING = 2;
-    private boolean mWorkspaceFadeInAdjacentScreens;
 
     // Camera and Matrix used to determine the final position of a neighboring CellLayout
     private final Matrix mMatrix = new Matrix();
