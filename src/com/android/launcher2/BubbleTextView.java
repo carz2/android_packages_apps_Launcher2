@@ -61,6 +61,9 @@ public class BubbleTextView extends TextView implements ShortcutInfo.ShortcutLis
     private boolean mStayPressed;
     private CheckLongPressHelper mLongPressHelper;
 
+    private boolean mTextVisible = true;
+    private CharSequence mVisibleText;
+
     public BubbleTextView(Context context) {
         super(context);
         init();
@@ -348,5 +351,16 @@ public class BubbleTextView extends TextView implements ShortcutInfo.ShortcutLis
         super.cancelLongPress();
 
         mLongPressHelper.cancelLongPress();
+    }
+
+    public void setTextVisible(boolean visible) {
+        if (mTextVisible == visible) return;
+        mTextVisible = visible;
+        if (visible) {
+            setText(mVisibleText);
+        } else {
+            mVisibleText = getText();
+            setText("");
+        }
     }
 }
