@@ -98,6 +98,7 @@
             android:layout_width="80dp"
             android:layout_height="@dimen/qsb_bar_height"
             android:layout_gravity="top|right"
+
             android:clickable="true"
             android:onClick="onClickVoiceButton"
             android:importantForAccessibility="no"

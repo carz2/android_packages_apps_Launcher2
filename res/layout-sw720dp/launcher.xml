@@ -66,6 +66,7 @@
             launcher:pageSpacing="@dimen/workspace_page_spacing"
             launcher:scrollIndicatorPaddingLeft="@dimen/workspace_divider_padding_left"
             launcher:scrollIndicatorPaddingRight="@dimen/workspace_divider_padding_right">
+
         </com.android.launcher2.Workspace>
 
         <include layout="@layout/hotseat"

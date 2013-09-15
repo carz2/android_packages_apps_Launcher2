@@ -39,12 +39,12 @@
             android:paddingRight="@dimen/workspace_right_padding"
             android:paddingTop="@dimen/workspace_top_padding"
             android:paddingBottom="@dimen/workspace_bottom_padding"
+
             launcher:cellCountX="@integer/cell_count_x"
             launcher:cellCountY="@integer/cell_count_y"
             launcher:pageSpacing="@dimen/workspace_page_spacing"
             launcher:scrollIndicatorPaddingLeft="@dimen/qsb_bar_height"
             launcher:scrollIndicatorPaddingRight="@dimen/button_bar_height">
-
         </com.android.launcher2.Workspace>
 
         <include
@@ -100,6 +100,7 @@
             android:layout_width="@dimen/qsb_bar_height"
             android:layout_height="@dimen/app_icon_size"
             android:layout_gravity="top|left"
+
             android:layout_marginTop="64dp"
             android:clickable="true"
             android:onClick="onClickVoiceButton"
@@ -113,3 +114,4 @@
             android:visibility="invisible" />
     </com.android.launcher2.DragLayer>
 </FrameLayout>
+
